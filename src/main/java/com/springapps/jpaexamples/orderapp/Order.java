@@ -19,11 +19,11 @@ public class Order {
     @Column(name = "order_date")
     private LocalDate orderDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) // se foloseste pentru enum  si se specifica ce tip de data sa puna in tabel -> string
     @Column(name = "order_status")
     private Status orderStatus;
 
-    @Transient
+    @Transient //daca nu vrem sa avem coloana in baza de date
     private String orderProgress;
 
     public Order(){}

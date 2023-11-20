@@ -25,7 +25,7 @@ public class Runner implements CommandLineRunner {
 
         Order foundOrder = orderRepository.findById(1L).orElseThrow(()->new Exception("order not found"));
         System.out.println(foundOrder);
-
+ 
         foundOrder.setOrderStatus(Status.RECEIVED);
         orderRepository.save(foundOrder);
 
