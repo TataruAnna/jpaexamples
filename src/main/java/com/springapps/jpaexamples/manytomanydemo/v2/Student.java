@@ -15,7 +15,7 @@ public class Student {
     private String name;
 
     @OneToMany(mappedBy ="student")
-    private Set<CurseRegistration> courseRegistrations;
+    private Set<CourseRegistration> courseRegistrations;
 
     public Student() {
     }
