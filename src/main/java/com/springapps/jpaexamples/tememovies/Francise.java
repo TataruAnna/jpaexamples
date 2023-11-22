@@ -10,7 +10,7 @@ public class Francise {
 
     @Id
     @GeneratedValue
-    private long Id;
+    private long id;
 
     @Column
     private String name;
@@ -26,11 +26,11 @@ public class Francise {
     }
 
     public long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(long id) {
-        Id = id;
+    public void setId(long franciseId) {
+        this.id = franciseId;
     }
 
     public String getName() {
@@ -52,7 +52,7 @@ public class Francise {
     @Override
     public String toString() {
         return "Francise{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }

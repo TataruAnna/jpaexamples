@@ -2,6 +2,7 @@ package com.springapps.jpaexamples.tememovies;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,16 +15,20 @@ public class Movie {
 
     @Id
     @GeneratedValue
-    private long Id;
+    private long movieId;
     @Column
     private String name;
 
-    @ManyToMany(mappedBy = "movies")
+    @ManyToMany(mappedBy = "movies", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Character> characters;
 
     @ManyToOne
     @JoinColumn(name= "francise_id")
     private Francise francise;
+
+//    @OneToMany(mappedBy = "movie")
+//    private Set<MovieCharacters> movieCharacters;
+
 
     public Movie(String name) {
         this.name = name;
@@ -32,12 +37,12 @@ public class Movie {
     public Movie() {
     }
 
-    public long getId() {
-        return Id;
+    public long getMovieId() {
+        return movieId;
     }
 
-    public void setId(long id) {
-        Id = id;
+    public void setMovieId(long movieId) {
+        this.movieId = movieId;
     }
 
     public String getName() {
@@ -49,12 +54,23 @@ public class Movie {
     }
 
     public Set<Character> getCharacters() {
+        if(characters==null){
+            characters=new HashSet<>();
+        }
         return characters;
     }
 
     public void setCharacters(Set<Character> characters) {
         this.characters = characters;
     }
+
+//    public Set<MovieCharacters> getMovieCharacters() {
+//        return movieCharacters;
+//    }
+//
+//    public void setMovieCharacters(Set<MovieCharacters> movieCharacters) {
+//        this.movieCharacters = movieCharacters;
+//    }
 
     public Francise getFrancise() {
         return francise;
@@ -67,7 +83,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "Id=" + Id +
+                "Id=" + movieId +
                 ", name='" + name + '\'' +
                 '}';
     }
